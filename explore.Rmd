@@ -1,0 +1,24 @@
+---
+title: "Explore"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(tidyverse)
+```
+
+
+```{r}
+df <- read.csv('owid-covid-data.csv')
+summary(df)
+```
+
+```{r}
+policy <- df %>% filter(!is.na(stringency_index))
+summary(policy)
+```
+
