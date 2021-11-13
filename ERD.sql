@@ -7,13 +7,13 @@ CREATE TABLE "country" (
     "iso_code" VARCHAR   NOT NULL,
     "country_name" VARCHAR   NOT NULL,
     "continent" VARCHAR   NOT NULL,
-    "population" INT   NOT NULL,
-    "population_density" INT   NOT NULL,
-    "gdp_per_capita" INT   NOT NULL,
-    "extreme_poverty" INT   NOT NULL,
-    "life_expectancy" INT   NOT NULL,
-    "handwashing_facilities" INT   NOT NULL,
-    "hospital_beds_per_thousand" INT   NOT NULL,
+    "population" INT,
+    "population_density" INT,
+    "gdp_per_capita" INT,
+    "extreme_poverty" INT,
+    "life_expectancy" INT,
+    "handwashing_facilities" INT,
+    "hospital_beds_per_thousand" INT,
     CONSTRAINT "pk_country" PRIMARY KEY (
         "iso_code"
      )
@@ -22,33 +22,33 @@ CREATE TABLE "country" (
 CREATE TABLE "cases" (
     "iso_code" VARCHAR   NOT NULL,
     "date" VARCHAR   NOT NULL,
-    "total_cases_per_million" INT   NOT NULL,
-    "new_cases_per_million" INT   NOT NULL,
-    "new_cases_smoothed_per_million" INT   NOT NULL
+    "total_cases_per_million" INT,
+    "new_cases_per_million" INT,
+    "new_cases_smoothed_per_million" INT
 );
 
 CREATE TABLE "deaths" (
     "iso_code" VARCHAR   NOT NULL,
     "date" VARCHAR   NOT NULL,
-    "total_deaths_per_million" INT   NOT NULL,
-    "new_deaths_per_million" INT   NOT NULL,
-    "new_deaths_smoothed_per_million" INT   NOT NULL,
-    "excess_mortality_cumulative_per_million" INT   NOT NULL
+    "total_deaths_per_million" INT,
+    "new_deaths_per_million" INT,
+    "new_deaths_smoothed_per_million" INT,
+    "excess_mortality_cumulative_per_million" INT
 );
 
 CREATE TABLE "vaccines" (
     "iso_code" VARCHAR   NOT NULL,
     "date" VARCHAR   NOT NULL,
-    "people_vaccinated_per_hundred" INT   NOT NULL,
-    "people_fully_vaccinated_per_hundred" INT   NOT NULL,
-    "total_boosters_per_hundred" INT   NOT NULL,
-    "new_vaccinations_smoothed_per_million" INT   NOT NULL
+    "people_vaccinated_per_hundred" INT,
+    "people_fully_vaccinated_per_hundred" INT,
+    "total_boosters_per_hundred" INT,
+    "new_vaccinations_smoothed_per_million" INT
 );
 
 CREATE TABLE "policy" (
     "iso_code" VARCHAR   NOT NULL,
     "date" VARCHAR   NOT NULL,
-    "stringency_index" INT   NOT NULL
+    "stringency_index" INT
 );
 
 ALTER TABLE "cases" ADD CONSTRAINT "fk_cases_iso_code" FOREIGN KEY("iso_code")
