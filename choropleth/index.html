@@ -26,17 +26,41 @@
 
     <script src="country_properties.js"></script>
 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
   </head>
   <body>
 
-    <input type="radio" name="JTP" id="cases" value="total_cases_per_million">Total Cases per Million<br> 
-    <input type="radio" name="JTP" id="doses" value="people_vaccinated_per_hundred">People Vaccinated per Hundred<br> 
-    <input type="radio" name="JTP" id="deaths" value="total_deaths_per_million">Total Deaths per Million<br>
-    <input type="radio" name="JTP" id="gdp" value="gdp_per_capita">GDP per Capita<br>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="choropleth-data" id="Total Cases per Million" value="total_cases_per_million" checked>
+      <label class="form-check-label" for="Total Cases per Million">Total Cases per Million</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="choropleth-data" id="Total Vaccinations per Hundred" value="total_vaccinations_per_hundred">
+      <label class="form-check-label" for="Total Vaccinations per Hundred">Total Vaccinations per Hundred</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="choropleth-data" id="Total Deaths per Million" value="total_deaths_per_million">
+      <label class="form-check-label" for="Total Deaths per Million">Total Deaths per Million</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="choropleth-data" id="GDP per Capita" value="gdp_per_capita">
+      <label class="form-check-label" for="GDP per Capita">GDP per Capita</label>
+    </div>
+
+
+    <!-- <input type="radio" name="choropleth-data" id="Total Cases per Million" value="total_cases_per_million">Total Cases per Million<br> 
+    <input type="radio" name="choropleth-data" id="Total Vaccinations per Hundred" value="total_vaccinations_per_hundred">Total Vaccinations per Hundred<br> 
+    <input type="radio" name="choropleth-data" id="Total Deaths per Million" value="total_deaths_per_million">Total Deaths per Million<br>
+    <input type="radio" name="choropleth-data" id="GDP per Capita" value="gdp_per_capita">GDP per Capita<br> -->
 
     <!-- The div where we'll insert our map -->
     <div id="map"></div>
     <script type="text/javascript" src="static/js/logic.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
   </body>
 </html>
