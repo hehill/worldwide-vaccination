@@ -1,9 +1,9 @@
 var data = DATA2;
 
-let trace1 = {
-  x: date,
-  y: yData
-};
+// let trace1 = {
+//   x: date,
+//   y: yData
+// };
 
 // let data = [trace1];
 
@@ -13,9 +13,9 @@ let trace1 = {
 
 // Plotly.newPlot("plot", data, layout);
 
-// var rawDataURL = 'https://raw.githubusercontent.com/plotly/datasets/master/2016-weather-data-seattle.csv';
-// var xField = 'Date';
-// var yField = 'Mean_TemperatureC';
+// var rawDataURL = 'http://cors.io/?https://github.com/hehill/worldwide-vaccination/blob/main/data/owid-covid-data.csv';
+// var xField = 'date';
+// var yField = 'total_vaccinations_per_hundred';
 
 // var selectorOptions = {
 //     buttons: [{
@@ -58,7 +58,7 @@ let trace1 = {
 //         }
 //     };
 
-//     Plotly.newPlot('myDiv', data, layout);
+//     Plotly.newPlot('scatter', data, layout);
 // });
 
 // function prepData(rawData) {
