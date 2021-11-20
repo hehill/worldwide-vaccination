@@ -51,7 +51,7 @@ sampledata.forEach(function(value, i){
     hospital_beds_per_thousand_list[i]=value.hospital_beds_per_thousand;   
 });
 
-// console.log(hospital_beds_per_thousand_list);
+
 
 function init() {
 var trace1 = {
@@ -66,8 +66,8 @@ var trace1 = {
             "<b>%{text.country}</b><br><br>" +
             "%{yaxis.title.text}: %{y:.0}<br>" + 
             "%{xaxis.title.text}: %{x:$,.0f}<br>"+
-            "Life_expectancy: %{text.expectency}<br>"
-            // "Hospital_bed_per_thousands: %{text.hospital}<br>"
+            "Life_expectancy: %{text.expectency}<br>"+
+            "Hospital_bed_per_thousands: %{text.hospital}<br>"
            
             
   };
