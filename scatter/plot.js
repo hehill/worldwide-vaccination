@@ -1,6 +1,32 @@
 var data = DATA2;
 console.log(data[0])
 
+var selectorOptions = {
+  buttons: [{
+      step: 'month',
+      stepmode: 'backward',
+      count: 1,
+      label: '1m'
+  }, {
+      step: 'month',
+      stepmode: 'backward',
+      count: 6,
+      label: '6m'
+  }, {
+      step: 'year',
+      stepmode: 'todate',
+      count: 1,
+      label: 'YTD'
+  }, {
+      step: 'year',
+      stepmode: 'backward',
+      count: 1,
+      label: '1y'
+  }, {
+      step: 'all',
+  }],
+};
+
 function checkContinent() {    
   if(document.getElementById('asia').checked) {   
     selected = document.getElementById('asia').value;
@@ -31,7 +57,7 @@ function checkContinent() {
   }
 }   
 
-function makeScatter() {
+function makeTotal() {
 var continent = checkContinent();
 const date_list =[];
 const total_vaccination_list =[];
@@ -67,8 +93,10 @@ let plot_data = [trace1,trace2];
 
 let layout = {
   title: checkContinent(),
-  yaxis: {title: "Total Vaccinations"},
-  yaxis2: {title: "Total Cases",
+  xaxis: {rangeselector: selectorOptions,
+          rangeslider: {}},
+  yaxis: {title: "Total Vaccinations", range: [0, 125]},
+  yaxis2: {title: "Total Cases", range: [0, 95000],
            overlaying: "y",
            side: "right"},
 };
@@ -76,75 +104,62 @@ let layout = {
 Plotly.newPlot("scatter", plot_data, layout);
 }
 
-d3.selectAll('input[name = scatter]').on("change", makeScatter);
 
-makeScatter();
+function makeDaily() {
+  var continent = checkContinent();
+  const date_list =[];
+  const new_cases_smoothed_per_million =[];
+  const new_vaccinations_smoothed_per_million =[];
+  
+  data.forEach(function(value, i) {
+      if (value.country_name == continent) {
+          date_list[i] = value.date;
+          new_vaccinations_smoothed_per_million[i] = value.new_vaccinations_smoothed_per_million
+          new_cases_smoothed_per_million[i] = value.new_cases_smoothed_per_million
+      }
+  });
+  
+  console.log(date_list)
+  console.log(new_vaccinations_smoothed_per_million)
+  
+  let trace1 = {
+    x: date_list,
+    y: new_vaccinations_smoothed_per_million,
+    type: 'scatter',
+    name: 'Daily Vaccinations Per Million',
+  };
+  
+  let trace2 = {
+    x: date_list,
+    y: new_cases_smoothed_per_million,
+    yaxis: 'y2',
+    type: 'scatter',
+    name: 'Daily Cases Per Milliom',
+  };
+  
+  let plot_data = [trace1,trace2];
+  
+  let layout = {
+    title: checkContinent(),
+    xaxis: {rangeselector: selectorOptions,
+            rangeslider: {}},
+    yaxis: {title: "Daily Vaccinations Per Million", range: [0, 9500]},
+    yaxis2: {title: "Daily Cases Per Million", range: [0, 471],
+             overlaying: "y",
+             side: "right"},
+  };
+  
+  Plotly.newPlot("vaccine", plot_data, layout);
+  }
 
-// var rawDataURL = 'http://cors.io/?https://github.com/hehill/worldwide-vaccination/blob/main/data/owid-covid-data.csv';
-// var xField = 'date';
-// var yField = 'total_vaccinations_per_hundred';
+function UpdateGraphs(){
+  makeTotal(); 
+  makeDaily();
+}
 
-// var selectorOptions = {
-//     buttons: [{
-//         step: 'month',
-//         stepmode: 'backward',
-//         count: 1,
-//         label: '1m'
-//     }, {
-//         step: 'month',
-//         stepmode: 'backward',
-//         count: 6,
-//         label: '6m'
-//     }, {
-//         step: 'year',
-//         stepmode: 'todate',
-//         count: 1,
-//         label: 'YTD'
-//     }, {
-//         step: 'year',
-//         stepmode: 'backward',
-//         count: 1,
-//         label: '1y'
-//     }, {
-//         step: 'all',
-//     }],
-// };
+d3.selectAll('input[name = scatter]').on("change", UpdateGraphs);
 
-// d3.csv(rawDataURL, function(err, rawData) {
-//     if(err) throw err;
-
-//     var data = prepData(rawData);
-//     var layout = {
-//         title: 'Time series with range slider and selectors',
-//         xaxis: {
-//             rangeselector: selectorOptions,
-//             rangeslider: {}
-//         },
-//         yaxis: {
-//             fixedrange: true
-//         }
-//     };
-
-//     Plotly.newPlot('scatter', data, layout);
-// });
-
-// function prepData(rawData) {
-//     var x = [];
-//     var y = [];
-
-//     rawData.forEach(function(datum, i) {
-
-//         x.push(new Date(datum[xField]));
-//         y.push(datum[yField]);
-//     });
-
-//     return [{
-//         mode: 'lines',
-//         x: x,
-//         y: y
-//     }];
-// }
-
+UpdateGraphs();
 
 
 
